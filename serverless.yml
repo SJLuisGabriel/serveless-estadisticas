@@ -1,0 +1,62 @@
+org: estadisticas
+app: estadisticas
+service: estadisticas-app
+
+provider:
+  name: aws
+  runtime: python3.8
+  region: us-east-1
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "iam:CreateRole"
+      Resource: "*"
+
+functions:
+  calcularMedia:
+    handler: handler.lambda_handler
+    events:
+      - http:
+          path: /calcular/media
+          method: post
+    role: arn:aws:iam::882045753045:role/LabRole
+
+  calcularMediana:
+    handler: handler.lambda_handler
+    events:
+      - http:
+          path: /calcular/mediana
+          method: post
+    role: arn:aws:iam::882045753045:role/LabRole
+
+  calcularModa:
+    handler: handler.lambda_handler
+    events:
+      - http:
+          path: /calcular/moda
+          method: post
+    role: arn:aws:iam::882045753045:role/LabRole
+
+  calcularVarianza:
+    handler: handler.lambda_handler
+    events:
+      - http:
+          path: /calcular/varianza
+          method: post
+    role: arn:aws:iam::882045753045:role/LabRole
+
+  calcularDesviacionEstandar:
+    handler: handler.lambda_handler
+    events:
+      - http:
+          path: /calcular/desviacion_estandar
+          method: post
+    role: arn:aws:iam::882045753045:role/LabRole
+
+  calcularRango:
+    handler: handler.lambda_handler
+    events:
+      - http:
+          path: /calcular/rango
+          method: post
+    role: arn:aws:iam::882045753045:role/LabRole
